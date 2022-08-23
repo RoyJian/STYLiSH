@@ -1,0 +1,74 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+.container{
+    width: 600px;
+    margin: auto;
+    padding-left:160px ;
+}
+form{
+  margin-top: 50px;
+}
+select{
+  margin-left: 10px;
+}
+input{
+  font:   "PingFang TC";
+  margin-left: 10px;
+}
+
+.item {
+   font: normal normal 600 16px/45px "PingFang TC";
+   padding-top: 5px;
+   display: flex;
+   align-items:center;
+  
+}
+
+.buttonContainer{
+  margin-top: 40px;
+  margin-left: 30px;
+  display: flex;
+  align-items:center;
+  justify-content:left
+}
+
+.spec{
+  display:  inline-flex;
+  font: normal normal 600 16px "PingFang TC";
+  padding-top: 30px;
+  justify-content:center
+}
+.spec input,select{
+  padding: 0;
+  margin-right: 10px;
+
+}
+.spec  button{
+  font: normal normal 600 10px "PingFang TC";
+  
+}
+button{
+  font:  16px "PingFang TC";
+  margin-right: 30px;
+  
+  
+}
+

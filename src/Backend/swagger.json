@@ -1,0 +1,423 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Powered by Swagger",
+    "version": "1.0.0",
+    "title": "API Documents"
+  },
+  "host": "127.0.0.1:3000",
+  "basePath": "/api/1.0/",
+  "schemes": [
+    "http"
+  ],
+  "tags": [
+    {
+      "name": "products",
+      "description": "Everything about Products"
+    },
+    {
+      "name": "users",
+      "description": "Operations about user"
+    },
+    {
+      "name": "orders",
+      "description": "Everything about orders"
+    }
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/products/{catalog}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Get product list by caatalog",
+        "parameters": [
+          {
+            "name": "catalog",
+            "in": "path",
+            "description": "Product catalog",
+            "required": true,
+            "type": "string",
+            "default": "men",
+            "enum": [
+              "men",
+              "women",
+              "accessories"
+            ]
+          },
+          {
+            "name": "paging",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/products/search": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "search products by keyword",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/products/details": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "get product details by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "default": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/products/create": {
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "summary": "create a product.",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "productName",
+            "type": "string",
+            "description": "product name",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "details",
+            "type": "string",
+            "description": "product name",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "description": "product name",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "catalog",
+            "type": "string",
+            "description": "choose product catalog.",
+            "enum": [
+              "men",
+              "women",
+              "accessories"
+            ],
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "color",
+            "type": "string",
+            "description": "product name",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "price",
+            "type": "number",
+            "description": "product name",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "size",
+            "type": "string",
+            "description": "choose product size.",
+            "enum": [
+              "S",
+              "M",
+              "L",
+              "XL",
+              "XXL"
+            ],
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "amount",
+            "type": "number",
+            "description": "product amount",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "updateFile",
+            "type": "file",
+            "description": "Upload a Image.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/signup": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "create a user",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "description": "Account name",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "description": "Account email",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "description": "Account password",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "phone",
+            "type": "number",
+            "description": "Account phone number",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "address",
+            "type": "string",
+            "description": "Home address",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "The user ID."
+                },
+                "username": {
+                  "type": "string",
+                  "description": "The user name."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "the account token"
+                },
+                "create_date": {
+                  "type": "string",
+                  "description": "the account date"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "your email have been created"
+          }
+        }
+      }
+    },
+    "/users/signin": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "login your account",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "description": "Account  email",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "description": "Account password",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success sign in",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "description": "your sign in token"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "email or password incorrect"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get your account profile",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "description": "sign up token",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success get account profile",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "account name"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "account email"
+                },
+                "phone": {
+                  "type": "string",
+                  "description": "account phone"
+                },
+                "address": {
+                  "type": "string",
+                  "description": "account home address"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "token not mech"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "post": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Check out order",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "description": "token",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "productID",
+            "type": "number",
+            "description": "product ID",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "price",
+            "type": "number",
+            "description": "product amount",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "userID",
+            "type": "number",
+            "description": "Account ID",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "prime",
+            "type": "string",
+            "description": "TapPay order id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success check out order"
+          },
+          "403": {
+            "description": "token not mech"
+          }
+        }
+      }
+    }
+  }
+}

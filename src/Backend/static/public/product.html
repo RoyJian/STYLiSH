@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/productStyle.css">
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <div class="container">
+        <form id="formdata" method="post" enctype="multipart/form-data">
+            <div class="item">
+                <p> Product name : </p>
+                <input id="productName" name="productName" required />
+            </div>
+            <div class="item">
+                <p>Description : </p>
+                <input id="description" name="description" required />
+            </div>
+            <div class="item">
+                <p>Details : </p>
+                <input id="details" name="details" required />
+            </div>
+            <div class="item">
+                <p>Catalog :</p>
+                <select id="catalog" name="catalog">
+                    <option value="Men">Men</option>
+                    <option value="Women">Women</option>
+                    <option value="Accessories">Accessories</option>
+                </select>
+            </div>
+            <div class="item">
+                <p>Price : </p> <input id="price" name="price" type="number" min="1" required
+                    oninput="value=value.replace(/[^\d]/g,'')" />
+            </div>
+
+            <div class="item">
+                <p>Image : </p> <input id="updateFile" name="updateFile" type="file" required />
+            </div>
+
+            <div class="spec" id="spec">
+                
+                    <p>Color :</p>
+                    <input id="color" name="color" type="color" required />
+                
+                
+                    <p>Size : </p>
+                    <select id="size" name="size">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                
+
+                    <p>Amount : </p> 
+                    <input id="amount" name="amount" type="number" min="0" required
+                        oninput="value=value.replace(/[^\d]/g,'')" />
+                    <button  id="add" type="button" onclick="AddSpec()">add </button>
+                    
+                
+            </div>
+            
+
+            <div class="buttonContainer">
+                <button id="add" type="submit">submit</button>
+                <button id="clear" type="button" onclick="ClearFields()">clear</button>
+
+            </div>
+        </form>
+
+    </div>
+    <title>Product Admin</title>
+</head>
+
+<body>
+
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="./javascripts/spript.js"></script>
+
+</html>

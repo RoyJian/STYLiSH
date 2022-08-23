@@ -1,0 +1,50 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: web
+    restart: always
+    container_name : web
+    #network_mode: "host"
+    ports: 
+      - 127.0.0.1:3000:3000
+    volumes: 
+      - ./src/Backend/static:/workspace/static
+  mysql:
+    container_name: mysql
+    restart: always
+    image: mysql:latest
+    environment:
+      - MYSQL_HOST=localhost 
+      - MYSQL_PORT=3306
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    volumes:
+      - ./db:/var/lib/mysql
+    ports: 
+      - 127.0.0.1:3306:3306
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 127.0.0.1:8888:80
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+  cache:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+    #network_mode: "host"
+    ports: 
+      - 127.0.0.1:6379:6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${CACHE_PASS}
+    volumes: 
+      - ./cache:/data
